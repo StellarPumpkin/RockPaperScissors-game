@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script>
+
+      function playerChoice() {
+        const playerSelection = prompt("Rock, paper, scissors?").toLowerCase();
+        if (
+          playerSelection === "Rock".toLowerCase() ||
+          playerSelection === "Paper".toLowerCase() ||
+          playerSelection === "Scissors".toLowerCase()
+        ) {
+          return playerSelection;
+        } else {
+          return "do not play games with meh!";
+        }
+      }
+      function computerPlay() {
+        switch (Math.floor(Math.random() * 3)) {
+          case 0:
+            return "paper";
+            break;
+          case 1:
+            return "rock";
+            break;
+          case 2:
+            return "scissors";
+            break;
+        }
+      }
+
+      let playerScore = 0;
+      let computerScore = 0;
+
+      function playRound(playerGame, computerGame) {
+        if (computerGame === playerGame) {
+          return "Arghhh tie!";
+        } else if (playerGame === "rock") {
+          if (computerGame === "paper") {
+            computerScore++;
+            return "You loose oh noooo!";
+          } else {
+            playerScore++;
+            return "YOU WIN, CAN YOU IMAGINE!";
+          }
+        } else if (playerGame === "paper") {
+          if (computerGame === "scissors") {
+            computerScore++;
+            return "Not your day, pal :c!";
+          } else {
+            playerScore++;
+            return "THIS IS IT, IT'S YOUR DAY, YOU LUCKY HUMAN!";
+          }
+        } else if (playerGame === "scissors") {
+          if (computerGame === "rock") {
+            computerScore++;
+            return "Don't cry, maybe next time you'll win!";
+          } else {
+            playerScore++;
+            return "Computer cries, it lost!";
+          }
+        }
+      }
+      function playGame() {
+        let playerGame = playerChoice();
+        let computerGame = computerPlay();
+        console.log(`I choose you, ${playerGame}`);
+        console.log(`Computer attacks with ${computerGame}`);
+        console.log(playRound(playerGame, computerGame));
+      }
+
+      function game() {
+        while (playerScore < 5 || computerScore < 5) {
+          playGame();
+          console.log(
+            "Your points: " +
+              playerScore +
+              "." +
+              "Computer points: " +
+              computerScore +
+              "."
+          );
+          if (playerScore === 5) {
+            console.log("CONGRATS PAL, YOU WON WOW!");
+            break;
+          } else if (computerScore === 5) {
+            console.log("Praise the mighty computer mind! It won! HA HA HA");
+            break;
+          } else if (playerScore === 5 && computerScore === 5) {
+            console.log("TIE TIE TIE TIE TIE TIE");
+          }
+        }
+      }
+      console.log(game());
+    </script>
+  </head>
+  <body></body>
+</html>
